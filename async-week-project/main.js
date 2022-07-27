@@ -86,51 +86,57 @@ scene.background = oceanTexture;
 
 // 3D bottle model loader
 const loader = async () => {
-  // const bottle = new GLTFLoader().setPath('./models/plastic_bottle/');
-  // const bottlegltf = await bottle.loadAsync( 'scene.gltf' )
-	// scene.add( bottlegltf.scene );
+  const bottle = new GLTFLoader().setPath('./models/plastic_bottle/');
+  const bottlegltf = await bottle.loadAsync( 'scene.gltf' )
+  scene.add( bottlegltf.scene );
 
-  // wrinkled pink chupa chups can
-  // const sodacan = new GLTFLoader().setPath('./models/soda_can/');
-  // const sodacangltf = await sodacan.loadAsync( 'scene.gltf' );
-  // scene.add( sodacangltf.scene )
+  // // really small
+  const lotion = new GLTFLoader().setPath('./models/lotion_bottle/');
+  const lotiongltf = await lotion.loadAsync( 'scene.gltf' );
+  scene.add( lotiongltf.scene );
 
-  // REALLY small crushed soda can
-  // const sodacan2 = new GLTFLoader().setPath('./models/soda_can_art/');
-  // const sodacan2gltf = await sodacan2.loadAsync( 'scene.gltf');
-  // scene.add( sodacan2gltf.scene );
-
-  // const fork = new GLTFLoader().setPath('./models/plastic_fork/');
-  // const forkgltf = await fork.loadAsync( 'scene.gltf' );
-  // scene.add( forkgltf.scene );
-
-  // REALLY small
-  // const box = new GLTFLoader().setPath('./models/plastic_burger_box/');
-  // const boxgltf = await box.loadAsync( 'scene.gltf' );
-  // scene.add( boxgltf.scene );
-
-  // const cigarette = new GLTFLoader().setPath('./models/cigarette/');
-  // const cigarettegltf = await cigarette.loadAsync( 'scene.gltf' );
-  // scene.add( cigarettegltf.scene );
+  const card = new GLTFLoader().setPath('./models/nubank_credit_card/');
+  const cardgltf = await card.loadAsync( 'scene.gltf' );
+  scene.add( cardgltf.scene );
 
   // REALLY small see-through garbage bag
-  // const trashBag1 = new GLTFLoader().setPath('./models/trash_bag1/');
-  // const trashBag1gltf = await trashBag1.loadAsync( 'scene.gltf' );
-  // scene.add( trashBag1gltf.scene );
+  const trashBag1 = new GLTFLoader().setPath('./models/trash_bag1/');
+  const trashBag1gltf = await trashBag1.loadAsync( 'scene.gltf' );
+  scene.add( trashBag1gltf.scene );
 
-  // // black garbage bag
-  // const trashBag2 = new GLTFLoader().setPath('./models/trash_bag_2/');
-  // const trashBag2gltf = await trashBag2.loadAsync( 'scene.gltf' );
-  // scene.add( trashBag2gltf.scene );
+  const fork = new GLTFLoader().setPath('./models/plastic_fork/');
+  const forkgltf = await fork.loadAsync( 'scene.gltf' );
+  scene.add( forkgltf.scene );
 
-  // mad big; blue only on the inside
-  // const trashBagBlue = new GLTFLoader().setPath('./models/trash_bag_blue/');
-  // const trashBagBluegltf = await trashBagBlue.loadAsync( 'scene.gltf' );
-  // scene.add( trashBagBluegltf.scene );
+  // REALLY small
+  const box = new GLTFLoader().setPath('./models/plastic_burger_box/');
+  const boxgltf = await box.loadAsync( 'scene.gltf' );
+  scene.add( boxgltf.scene );
+
+  // small
+  const dvd = new GLTFLoader().setPath('./models/dvd/');
+  const dvdgltf = await dvd.loadAsync( 'scene.gltf' );
+  scene.add( dvdgltf.scene );
 }
 
 loader();
 
+// ------------------------------------------------------------------------------------------------------------------------------------------------------
+
+// to test if there is difference between loading all at once vs loading individually; spoiler: there isnt
+// const bottleloader = async () => {
+//   const bottle = new GLTFLoader().setPath('./models/plastic_bottle/');
+//   const bottlegltf = await bottle.loadAsync( 'scene.gltf' )
+//   scene.add( bottlegltf.scene );
+// }
+// bottleloader();
+
+// const lotionloader = async () => {
+//   const lotion = new GLTFLoader().setPath('./models/lotion_bottle/');
+//   const lotiongltf = await lotion.loadAsync( 'scene.gltf' );
+//   scene.add( lotiongltf.scene );
+// }
+// lotionloader();
 
 // ------------------------------------------------------------------------------------------------------------------------------------------------------
 

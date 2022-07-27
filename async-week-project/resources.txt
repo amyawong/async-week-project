@@ -1,0 +1,29 @@
+https://waste4change.com/blog/7-types-plastic-need-know/
+https://alansfactoryoutlet.com/wp-content/uploads/2021/02/7-types-plastic-toxicity-uses-3_compressed.png
+
+reconsider your plastic (usage)
+whats hiding in your plastic/hidden/secret life of plastics
+
+types of plastic w/o info summary page (lists types of plastics and clicking on number brings user to info page)
+
+clicking on item brings user to page with more information on type of plastic
+    - future risks, time of decomposition, alternatives, how often can it be recycled, common misconceptions, etc.
+    - type 4 is used to line paper milk cartons
+    - type 5 is used to make clothes
+    - type 6 is in styrofoam, disposable coffee cups,
+
+find way to incorporate a database?
+
+
+microplastics in the ocean
+
+plan was to to raise awareness of plastic usage in an interactive way through threejs
+
+
+1 - plastic water bottle, soda can
+2 - lotion
+3 - credit card
+4 - garbage bag
+5 - straw, fork
+6 - fork, takeout container
+7 - CD, cigarette
