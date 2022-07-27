@@ -82,103 +82,63 @@ Array(500).fill().forEach(addStar)
 const oceanTexture = new THREE.TextureLoader().load('underwater-background.jpg');
 scene.background = oceanTexture;
 
-// const ocean = new THREE.TextureLoader().load('./models/ocean_wave_-__wmaya/textures');
-// scene.background = ocean;
-
 // -----------------------------------------------------------------------------------------------------------------------------
+
 // 3D bottle model loader
-
-
 const loader = async () => {
-  const bottle = new GLTFLoader().setPath('./models/plastic_bottle/');
-  const bottlegltf = await bottle.loadAsync( 'scene.gltf' )
+  // const bottle = new GLTFLoader().setPath('./models/plastic_bottle/');
+  // const bottlegltf = await bottle.loadAsync( 'scene.gltf' )
+	// scene.add( bottlegltf.scene );
+
+  // wrinkled pink chupa chups can
+  // const sodacan = new GLTFLoader().setPath('./models/soda_can/');
+  // const sodacangltf = await sodacan.loadAsync( 'scene.gltf' );
+  // scene.add( sodacangltf.scene )
+
+  // REALLY small crushed soda can
   // const sodacan2 = new GLTFLoader().setPath('./models/soda_can_art/');
-  // const sodacan2gltf = await sodacan2.loadAsync( 'scene.gltf')
-	scene.add( bottlegltf.scene );
-  // scene.add( sodacan2gltf.scene )
+  // const sodacan2gltf = await sodacan2.loadAsync( 'scene.gltf');
+  // scene.add( sodacan2gltf.scene );
+
+  // const fork = new GLTFLoader().setPath('./models/plastic_fork/');
+  // const forkgltf = await fork.loadAsync( 'scene.gltf' );
+  // scene.add( forkgltf.scene );
+
+  // REALLY small
+  // const box = new GLTFLoader().setPath('./models/plastic_burger_box/');
+  // const boxgltf = await box.loadAsync( 'scene.gltf' );
+  // scene.add( boxgltf.scene );
+
+  // const cigarette = new GLTFLoader().setPath('./models/cigarette/');
+  // const cigarettegltf = await cigarette.loadAsync( 'scene.gltf' );
+  // scene.add( cigarettegltf.scene );
+
+  // REALLY small see-through garbage bag
+  // const trashBag1 = new GLTFLoader().setPath('./models/trash_bag1/');
+  // const trashBag1gltf = await trashBag1.loadAsync( 'scene.gltf' );
+  // scene.add( trashBag1gltf.scene );
+
+  // // black garbage bag
+  // const trashBag2 = new GLTFLoader().setPath('./models/trash_bag_2/');
+  // const trashBag2gltf = await trashBag2.loadAsync( 'scene.gltf' );
+  // scene.add( trashBag2gltf.scene );
+
+  // mad big; blue only on the inside
+  // const trashBagBlue = new GLTFLoader().setPath('./models/trash_bag_blue/');
+  // const trashBagBluegltf = await trashBagBlue.loadAsync( 'scene.gltf' );
+  // scene.add( trashBagBluegltf.scene );
 }
 
 loader();
-// 3D cigarette model loader
-// const cigarette = new GLTFLoader().setPath('./models/cigarette/');
-// cigarette.load( 'scene.gltf', function ( gltf ) {
-// 	scene.add( gltf.scene );
-//   // renderer.render();
-// }, 
-// function ( error ) {
-// 	console.error( error );
-// } );
-
-// 3D fork model loader
-// const fork = new GLTFLoader().setPath('./models/plastic_fork/');
-// fork.load( 'scene.gltf', function ( gltf ) {
-// 	scene.add( gltf.scene );
-// }, 
-// function ( error ) {
-// 	console.log( error );
-// } );
-
-// const sodacan = new GLTFLoader().setPath('./models/soda_can/');
-// sodacan.load( 'scene.gltf', function ( gltf ) {
-// 	scene.add( gltf.scene );
-// }, 
-// function ( error ) {
-// 	console.log( error );
-// } );
-
-// also doesnt work
-// const sodacan2 = new GLTFLoader().setPath('./models/soda_can_art/');
-// sodacan2.load( 'scene.gltf', function ( gltf ) {
-// 	scene.add( gltf.scene );
-// }, 
-// function ( error ) {
-// 	console.log( error );
-// } );
-
-// 3D box model loader
-// const box = new GLTFLoader().setPath('./models/plastic_burger_box/');
-// box.load( 'scene.gltf', function ( gltf ) {
-// 	scene.add( gltf.scene );
-// }, 
-// function ( error ) {
-// 	console.log( error );
-// } );
-
-// kinda works but not really - 3D trash bag blue loader
-// const trashBagBlue = new GLTFLoader().setPath('./models/trash_bag_blue/');
-// trashBagBlue.load( 'scene.gltf', function ( gltf ) {
-// 	scene.add( gltf.scene );
-//   // renderer.render();
-// }, 
-// function ( error ) {
-// 	console.error( error );
-// } );
-
-// doesn't work: 3D trash bag 1 loader
-// const trashBag1 = new GLTFLoader().setPath('./models/trash_bag1');
-// trashBag1.load( 'scene.gltf', function ( gltf ) {
-// 	scene.add( gltf.scene );
-//   // renderer.render();
-// }, 
-// function ( error ) {
-// 	console.error( error );
-// } );
-
-// // doesn't work: 3D trash bag 2 loader
-// const trashBag2 = new GLTFLoader().setPath('./models/trash_bag_2/');
-// trashBag2.load( 'scene.gltf', function ( gltf ) {
-// 	scene.add( gltf.scene );
-//   renderer.render();
-// }, 
-// function ( error ) {
-// 	console.error( error );
-// } );
 
 
 // ------------------------------------------------------------------------------------------------------------------------------------------------------
+
 // scroll animation
 
+
 // ------------------------------------------------------------------------------------------------------------------------------------------------------
+
 // animation function
 function animate () {
   requestAnimationFrame( animate ); // tells browser you want to perform an animation; recursively call function to make an infinite loop
