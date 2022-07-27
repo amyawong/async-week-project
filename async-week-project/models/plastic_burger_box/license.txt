@@ -1,0 +1,11 @@
+Model Information:
+* title:	Plastic Burger Box
+* source:	https://sketchfab.com/3d-models/plastic-burger-box-f716929c44eb467c8bb12b8e2f9b5316
+* author:	jong3303 (https://sketchfab.com/jong3303)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Plastic Burger Box" (https://sketchfab.com/3d-models/plastic-burger-box-f716929c44eb467c8bb12b8e2f9b5316) by jong3303 (https://sketchfab.com/jong3303) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

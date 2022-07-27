@@ -1,0 +1,11 @@
+Model Information:
+* title:	blue garbage bag 2
+* source:	https://sketchfab.com/3d-models/blue-garbage-bag-2-c9a4dc6c818c4162a4d7391f9d5d6de5
+* author:	vicente betoret ferrero (https://sketchfab.com/deathcow)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "blue garbage bag 2" (https://sketchfab.com/3d-models/blue-garbage-bag-2-c9a4dc6c818c4162a4d7391f9d5d6de5) by vicente betoret ferrero (https://sketchfab.com/deathcow) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

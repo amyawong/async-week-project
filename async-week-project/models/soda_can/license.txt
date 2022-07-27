@@ -1,0 +1,11 @@
+Model Information:
+* title:	Soda Can
+* source:	https://sketchfab.com/3d-models/soda-can-608514c9154f4075924bd85351079437
+* author:	miriamalghanim (https://sketchfab.com/miriamalghanim)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Soda Can" (https://sketchfab.com/3d-models/soda-can-608514c9154f4075924bd85351079437) by miriamalghanim (https://sketchfab.com/miriamalghanim) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
