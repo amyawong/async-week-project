@@ -8,7 +8,7 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 
 const scene = new THREE.Scene(); // scene is like a container that holds all objects, cameras, and lights
 
-const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+const camera = new THREE.PerspectiveCamera( 100, window.innerWidth / window.innerHeight, 0.1, 1000 );
 // in order to look at things inside the scene, we need a camera (there are many diff types of cameras in three.js)
 // PerspectiveCamera mimics what human eyes see
   // first arg is field of view (amount of world visible based off a 360º view)
@@ -44,9 +44,10 @@ class CustomSinCurve extends THREE.Curve {
 }
 
 const path = new CustomSinCurve( 10 );
-const geometry = new THREE.TubeGeometry( path, 1, 1, 20, false );
+const geometry = new THREE.TubeGeometry( path, 1, 1, 50, false );
 const material = new THREE.MeshStandardMaterial( { color: 0xffccff } );
 const mesh = new THREE.Mesh( geometry, material );
+geometry.scale(0.5, 1, 1)
 scene.add( mesh );
 
 // light source
@@ -84,59 +85,63 @@ scene.background = oceanTexture;
 
 // -----------------------------------------------------------------------------------------------------------------------------
 
-// 3D bottle model loader
-const loader = async () => {
-  const bottle = new GLTFLoader().setPath('./models/plastic_bottle/');
-  const bottlegltf = await bottle.loadAsync( 'scene.gltf' )
-  scene.add( bottlegltf.scene );
+// const bottleLoader = new GLTFLoader();
+// bottleLoader.load('./models/plastic_bottle/scene.gltf', (gltfScene) => {
+//   gltfScene.scene.rotation.y = Math.PI / 2;
+//   gltfScene.scene.position.y = 3;
+//   // gltfScene.scene.scale.set(10, 10, 10);
+//   scene.add(gltfScene.scene)
+// })
 
-  // // really small
-  const lotion = new GLTFLoader().setPath('./models/lotion_bottle/');
-  const lotiongltf = await lotion.loadAsync( 'scene.gltf' );
-  scene.add( lotiongltf.scene );
+// const lotionLoader = new GLTFLoader();
+// lotionLoader.load('./models/lotion_bottle/scene.gltf', (gltfScene) => {
+//   gltfScene.scene.position.y = 3;
+//   gltfScene.scene.scale.set(50, 50, 50);
+//   scene.add(gltfScene.scene)
+// })
 
-  const card = new GLTFLoader().setPath('./models/nubank_credit_card/');
-  const cardgltf = await card.loadAsync( 'scene.gltf' );
-  scene.add( cardgltf.scene );
+// const cardLoader = new GLTFLoader();
+// cardLoader.load('./models/nubank_credit_card/scene.gltf', (gltfScene) => {
+//   gltfScene.scene.position.y = 3;
+//   // gltfScene.scene.scale.set(10, 10, 10);
+//   scene.add(gltfScene.scene)
+// })
 
-  // REALLY small see-through garbage bag
-  const trashBag1 = new GLTFLoader().setPath('./models/trash_bag1/');
-  const trashBag1gltf = await trashBag1.loadAsync( 'scene.gltf' );
-  scene.add( trashBag1gltf.scene );
+// const trashBag1Loader = new GLTFLoader();
+// trashBag1Loader.load('./models/trash_bag1/scene.gltf', (gltfScene) => {
+//   gltfScene.scene.rotation.y = Math.PI / 8;
+//   gltfScene.scene.position.y = 20;
+//   gltfScene.scene.scale.set(10, 10, 10);
+//   scene.add(gltfScene.scene)
+// })
 
-  const fork = new GLTFLoader().setPath('./models/plastic_fork/');
-  const forkgltf = await fork.loadAsync( 'scene.gltf' );
-  scene.add( forkgltf.scene );
+// const forkLoader = new GLTFLoader();
+// forkLoader.load('./models/plastic_fork/scene.gltf', (gltfScene) => {
+//   gltfScene.scene.rotation.y = Math.PI / 8;
+//   gltfScene.scene.position.y = 3;
+//   // gltfScene.scene.scale.set(10, 10, 10);
+//   scene.add(gltfScene.scene)
+// })
 
-  // REALLY small
-  const box = new GLTFLoader().setPath('./models/plastic_burger_box/');
-  const boxgltf = await box.loadAsync( 'scene.gltf' );
-  scene.add( boxgltf.scene );
+// const boxLoader = new GLTFLoader();
+// boxLoader.load('./models/plastic_burger_box/scene.gltf', (gltfScene) => {
+//   gltfScene.scene.position.y = 3;
+//   gltfScene.scene.scale.set(200, 200, 200);
+//   scene.add(gltfScene.scene)
+// })
 
-  // small
-  const dvd = new GLTFLoader().setPath('./models/dvd/');
-  const dvdgltf = await dvd.loadAsync( 'scene.gltf' );
-  scene.add( dvdgltf.scene );
-}
-
-loader();
-
-// ------------------------------------------------------------------------------------------------------------------------------------------------------
-
-// to test if there is difference between loading all at once vs loading individually; spoiler: there isnt
-// const bottleloader = async () => {
-//   const bottle = new GLTFLoader().setPath('./models/plastic_bottle/');
-//   const bottlegltf = await bottle.loadAsync( 'scene.gltf' )
-//   scene.add( bottlegltf.scene );
-// }
-// bottleloader();
-
-// const lotionloader = async () => {
-//   const lotion = new GLTFLoader().setPath('./models/lotion_bottle/');
-//   const lotiongltf = await lotion.loadAsync( 'scene.gltf' );
-//   scene.add( lotiongltf.scene );
-// }
-// lotionloader();
+let dvd;
+const dvdLoader = new GLTFLoader();
+dvdLoader.load('./models/dvd/scene.gltf', (gltfScene) => {
+  dvd = gltfScene; // has properties: ['scene', 'scenes', 'animations', 'cameras', 'asset', 'parser', 'userData']
+  // console.log(Object.getOwnPropertyNames(gltfScene.asset.extras.author));
+  // console.log(gltfScene.asset.extras); // for giving credits
+  // console.log(gltfScene.scene)
+  gltfScene.scene.rotation.x = Math.PI / 2;
+  gltfScene.scene.position.y = 3;
+  gltfScene.scene.scale.set(5, 5, 5);
+  scene.add(gltfScene.scene)
+})
 
 // ------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -147,13 +152,20 @@ loader();
 
 // animation function
 function animate () {
-  requestAnimationFrame( animate ); // tells browser you want to perform an animation; recursively call function to make an infinite loop
-  mesh.rotation.x += 0.01;
-  mesh.rotation.y += 0.005;
-  mesh.rotation.z += 0.01;
+  // straw
+  // mesh.rotation.x += 0.01;
+  // mesh.rotation.y += 0.005;
+  // mesh.rotation.z += 0.01;
 
-  controls.update(); // to make sure changes from dom mouse events are reflected in the UI
-
+  // if (dvd) {
+  //     dvd.scene.rotation.x += 0.01;
+  //     dvd.scene.rotation.y += 0.05;
+  //     dvd.scene.rotation.z += 0.01;
+  // }
+    
+    controls.update(); // to make sure changes from dom mouse events are reflected in the UI
+    
+    requestAnimationFrame( animate ); // tells browser you want to perform an animation; recursively call function to make an infinite loop
   renderer.render( scene, camera );
 }
 
