@@ -8,7 +8,7 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 
 const scene = new THREE.Scene(); // scene is like a container that holds all objects, cameras, and lights
 
-const camera = new THREE.PerspectiveCamera( 100, window.innerWidth / window.innerHeight, 0.1, 1000 );
+const camera = new THREE.PerspectiveCamera( 130, window.innerWidth / window.innerHeight, 1, 5000 );
 // in order to look at things inside the scene, we need a camera (there are many diff types of cameras in three.js)
 // PerspectiveCamera mimics what human eyes see
   // first arg is field of view (amount of world visible based off a 360º view)
@@ -24,6 +24,8 @@ renderer.setPixelRatio( window.devicePixelRatio );
 renderer.setSize( window.innerWidth, window.innerHeight ) // to make it a full screen canvas
 
 camera.position.setZ(30); // move camera along z-axis
+camera.position.setY(30);
+// camera.position.setX(30);
 
 renderer.render( scene, camera ); // .render == draw
 
@@ -33,22 +35,23 @@ class CustomSinCurve extends THREE.Curve {
 		super();
 		this.scale = scale;
 	}
-
 	getPoint( t, optionalTarget = new THREE.Vector3() ) {
 		const tx = t * 3 - 1.5;
 		const ty = Math.sin( 2 * Math.PI * t );
 		const tz = 0;
-
 		return optionalTarget.set( tx, ty, tz ).multiplyScalar( this.scale );
 	}
 }
-
 const path = new CustomSinCurve( 10 );
-const geometry = new THREE.TubeGeometry( path, 1, 1, 50, false );
+const geometry = new THREE.TubeGeometry( path, 1, 1, 20, false );
+// geometry.scale.y = 0.2
+// console.log(geometry.position)
+geometry.scale(0.5, 1, 1)
 const material = new THREE.MeshStandardMaterial( { color: 0xffccff } );
 const mesh = new THREE.Mesh( geometry, material );
-geometry.scale(0.5, 1, 1)
 scene.add( mesh );
+
+
 
 // light source
 const pointLight = new THREE.PointLight(0xffffff); // pointLight emits light in all directions, pass in a hexidecimal literal
@@ -85,50 +88,62 @@ scene.background = oceanTexture;
 
 // -----------------------------------------------------------------------------------------------------------------------------
 
-// const bottleLoader = new GLTFLoader();
-// bottleLoader.load('./models/plastic_bottle/scene.gltf', (gltfScene) => {
-//   gltfScene.scene.rotation.y = Math.PI / 2;
-//   gltfScene.scene.position.y = 3;
-//   // gltfScene.scene.scale.set(10, 10, 10);
-//   scene.add(gltfScene.scene)
-// })
+let bottle;
+const bottleLoader = new GLTFLoader();
+bottleLoader.load('./models/plastic_bottle/scene.gltf', (gltfScene) => {
+  bottle = gltfScene;
+  gltfScene.scene.rotation.y = Math.PI / 2;
+  gltfScene.scene.position.y = 35;
+  gltfScene.scene.scale.set(0.35, 0.35, 0.35);
+  scene.add(gltfScene.scene)
+})
 
-// const lotionLoader = new GLTFLoader();
-// lotionLoader.load('./models/lotion_bottle/scene.gltf', (gltfScene) => {
-//   gltfScene.scene.position.y = 3;
-//   gltfScene.scene.scale.set(50, 50, 50);
-//   scene.add(gltfScene.scene)
-// })
+let lotion;
+const lotionLoader = new GLTFLoader();
+lotionLoader.load('./models/lotion_bottle/scene.gltf', (gltfScene) => {
+  lotion = gltfScene;
+  gltfScene.scene.position.y = 28;
+  gltfScene.scene.scale.set(20, 20, 20);
+  scene.add(gltfScene.scene)
+})
 
-// const cardLoader = new GLTFLoader();
-// cardLoader.load('./models/nubank_credit_card/scene.gltf', (gltfScene) => {
-//   gltfScene.scene.position.y = 3;
-//   // gltfScene.scene.scale.set(10, 10, 10);
-//   scene.add(gltfScene.scene)
-// })
+let card;
+const cardLoader = new GLTFLoader();
+cardLoader.load('./models/nubank_credit_card/scene.gltf', (gltfScene) => {
+  card = gltfScene;
+  gltfScene.scene.position.y = 25;
+  // gltfScene.scene.scale.set(10, 10, 10);
+  scene.add(gltfScene.scene)
+})
 
-// const trashBag1Loader = new GLTFLoader();
-// trashBag1Loader.load('./models/trash_bag1/scene.gltf', (gltfScene) => {
-//   gltfScene.scene.rotation.y = Math.PI / 8;
-//   gltfScene.scene.position.y = 20;
-//   gltfScene.scene.scale.set(10, 10, 10);
-//   scene.add(gltfScene.scene)
-// })
+let trashBag1;
+const trashBag1Loader = new GLTFLoader();
+trashBag1Loader.load('./models/trash_bag1/scene.gltf', (gltfScene) => {
+  trashBag1 = gltfScene;
+  gltfScene.scene.rotation.y = Math.PI / 8;
+  gltfScene.scene.position.y = 5;
+  gltfScene.scene.scale.set(30, 30, 30);
+  scene.add(gltfScene.scene)
+})
 
-// const forkLoader = new GLTFLoader();
-// forkLoader.load('./models/plastic_fork/scene.gltf', (gltfScene) => {
-//   gltfScene.scene.rotation.y = Math.PI / 8;
-//   gltfScene.scene.position.y = 3;
-//   // gltfScene.scene.scale.set(10, 10, 10);
-//   scene.add(gltfScene.scene)
-// })
+let fork;
+const forkLoader = new GLTFLoader();
+forkLoader.load('./models/plastic_fork/scene.gltf', (gltfScene) => {
+  fork = gltfScene;
+  gltfScene.scene.rotation.y = Math.PI / 8;
+  gltfScene.scene.position.y = -10;
+  gltfScene.scene.scale.set(1.5, 1.5, 1.5);
+  scene.add(gltfScene.scene)
+})
 
-// const boxLoader = new GLTFLoader();
-// boxLoader.load('./models/plastic_burger_box/scene.gltf', (gltfScene) => {
-//   gltfScene.scene.position.y = 3;
-//   gltfScene.scene.scale.set(200, 200, 200);
-//   scene.add(gltfScene.scene)
-// })
+let box;
+const boxLoader = new GLTFLoader();
+boxLoader.load('./models/plastic_burger_box/scene.gltf', (gltfScene) => {
+  box = gltfScene;
+  gltfScene.scene.position.y = -20;
+  gltfScene.scene.scale.set(200, 200, 200);
+  scene.add(gltfScene.scene)
+})
 
 let dvd;
 const dvdLoader = new GLTFLoader();
@@ -138,7 +153,7 @@ dvdLoader.load('./models/dvd/scene.gltf', (gltfScene) => {
   // console.log(gltfScene.asset.extras); // for giving credits
   // console.log(gltfScene.scene)
   gltfScene.scene.rotation.x = Math.PI / 2;
-  gltfScene.scene.position.y = 3;
+  gltfScene.scene.position.y = -30;
   gltfScene.scene.scale.set(5, 5, 5);
   scene.add(gltfScene.scene)
 })
@@ -152,20 +167,58 @@ dvdLoader.load('./models/dvd/scene.gltf', (gltfScene) => {
 
 // animation function
 function animate () {
-  // straw
-  // mesh.rotation.x += 0.01;
-  // mesh.rotation.y += 0.005;
-  // mesh.rotation.z += 0.01;
 
-  // if (dvd) {
-  //     dvd.scene.rotation.x += 0.01;
-  //     dvd.scene.rotation.y += 0.05;
-  //     dvd.scene.rotation.z += 0.01;
-  // }
-    
-    controls.update(); // to make sure changes from dom mouse events are reflected in the UI
-    
-    requestAnimationFrame( animate ); // tells browser you want to perform an animation; recursively call function to make an infinite loop
+  if (bottle) {
+    bottle.scene.rotation.x += 0.01;
+    bottle.scene.rotation.y += 0.05;
+    bottle.scene.rotation.z += 0.01;
+  }
+
+  if (lotion) {
+    // lotion.scene.rotation.x += 0.01;
+    lotion.scene.rotation.y += 0.05;
+    // lotion.scene.rotation.z += 0.01;
+  }
+
+  if (card) {
+    // card.scene.rotation.x += 0.01;
+    card.scene.rotation.y += 0.05;
+    // card.scene.rotation.z += 0.01;
+  }
+
+  if (trashBag1) {
+    // trashBag1.scene.rotation.x += 0.01;
+    trashBag1.scene.rotation.y += 0.05;
+    // trashBag1.scene.rotation.z += 0.01;
+  }
+
+  // straw
+  mesh.rotation.x += 0.01;
+  mesh.rotation.y += 0.005;
+  mesh.rotation.z += 0.01;
+
+  
+  if (fork) {
+    fork.scene.rotation.x += 0.01;
+    fork.scene.rotation.y += 0.05;
+    fork.scene.rotation.z += 0.01;
+  }
+
+  if (box) {
+    box.scene.rotation.x += 0.01;
+    box.scene.rotation.y += 0.05;
+    box.scene.rotation.z += 0.01;
+  }
+  
+  if (dvd) {
+    dvd.scene.rotation.x += 0.01;
+    dvd.scene.rotation.y += 0.05;
+    dvd.scene.rotation.z += 0.01;
+  }
+  
+  controls.update(); // to make sure changes from dom mouse events are reflected in the UI
+  
+  requestAnimationFrame( animate ); // tells browser you want to perform an animation; recursively call function to make an infinite loop
   renderer.render( scene, camera );
 }
 
