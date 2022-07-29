@@ -22,3 +22,14 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# js files in case i needed the code but ended up not using
+options.js
+3D-model-loaders.js
+
+public/ocean-2.jpeg
+public/ocean3.jpg
+resources.txt
+
+
+

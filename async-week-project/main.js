@@ -2,6 +2,9 @@ import './style.css'
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls' // { OrbitControls } is a class from a module
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
+import { FontLoader } from 'three/examples/jsm/loaders/FontLoader';
+import { TextGeometry } from 'three/examples/jsm/geometries/TextGeometry.js'
+
 
 
 // need three objects: 1. Scene, 2. Camera, 3. Renderer
@@ -25,9 +28,14 @@ const renderer = new THREE.WebGLRenderer({
 renderer.setPixelRatio( window.devicePixelRatio );
 renderer.setSize( window.innerWidth, window.innerHeight ) // to make it a full screen canvas
 
+// ObritControls allows us to move around scene with mouse; listens to dom events on mouse and updates camera position accordingly
+const controls = new OrbitControls(camera, renderer.domElement);
+
+// console.log(camera.position)
 camera.position.setX(0);
 camera.position.setY(20);
 camera.position.setZ(30); // move camera along z-axis
+controls.update() // controls.update() must be called after any manual changes to the camera's transform
 
 renderer.render( scene, camera ); // .render == draw
 
@@ -60,12 +68,12 @@ const pointLight = new THREE.PointLight(0xffffff); // pointLight emits light in 
 pointLight.position.set(0, 25, 25); // position it away from the center 
 scene.add(pointLight) // add to scene
 
-const lightHelper = new THREE.PointLightHelper(pointLight); // shows position of pointLight
-const gridHelper = new THREE.GridHelper(200, 50) // draws a 2D grid along the scene
-scene.add(lightHelper, gridHelper)
+// const lightHelper = new THREE.PointLightHelper(pointLight); // shows position of pointLight
+// const gridHelper = new THREE.GridHelper(200, 50) // draws a 2D grid along the scene
+// scene.add(lightHelper, gridHelper)
 
-// ObritControls allows us to move around scene with mouse; listens to dom events on mouse and updates camera position accordingly
-const controls = new OrbitControls(camera, renderer.domElement);
+// // ObritControls allows us to move around scene with mouse; listens to dom events on mouse and updates camera position accordingly
+// const controls = new OrbitControls(camera, renderer.domElement);
 
 // Populate scene with randomly generated stars
 function addStar () {
@@ -85,7 +93,7 @@ Array(500).fill().forEach(addStar)
 // -----------------------------------------------------------------------------------------------------------------------------
 
 // add a background with a jpeg
-const oceanTexture = new THREE.TextureLoader().load('underwater-background.jpg');
+const oceanTexture = new THREE.TextureLoader().load('./underwater-background.jpg');
 scene.background = oceanTexture;
 
 // -----------------------------------------------------------------------------------------------------------------------------
@@ -155,10 +163,30 @@ dvdLoader.load('./models/dvd/scene.gltf', (gltfScene) => {
   // console.log(gltfScene.asset.extras); // for giving credits
   // console.log(gltfScene.scene)
   gltfScene.scene.rotation.x = Math.PI / 2;
-  gltfScene.scene.position.y = -30;
+  gltfScene.scene.position.y = -35;
   gltfScene.scene.scale.set(5, 5, 5);
   scene.add(gltfScene.scene)
 })
+
+// -----------------------------------------------------------------------------------------------------------------------------
+
+// 3D text
+// 2♴ HDPE || 3♵ PVC ||	4♶ LDPE ||	5♷ PP ||	6♸ PS ||	7♹ OTHER
+const loader = new FontLoader();
+loader.load( 'https://components.ai/api/v1/typefaces/inter/normal/700', function ( font ) {
+	const text1 = new TextGeometry( 'Hello three.js!', {
+		font: font,
+		size: 80,
+		height: 5,
+		curveSegments: 12,
+		bevelEnabled: true,
+		bevelThickness: 10,
+		bevelSize: 8,
+		bevelOffset: 0,
+		bevelSegments: 5
+	} );
+  // scene.add(text1);
+} );
 
 // ------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -172,6 +200,11 @@ dvdLoader.load('./models/dvd/scene.gltf', (gltfScene) => {
   // console.log('camera.position.x: ', camera.position.x);
   // console.log('camera.position.y: ', camera.position.y);
   // console.log('camera.position.z: ', camera.position.z, '\n');
+
+  // camera.position.x = 100;
+  // camera.position.y = 300;
+  // camera.position.z = 600;
+  // camera.lookAt(new THREE.Vector3(400, 0, -300));
 // }
 // document.body.onscroll = moveCamera;
 
@@ -182,26 +215,26 @@ dvdLoader.load('./models/dvd/scene.gltf', (gltfScene) => {
 function animate () {
 
   if (bottle) {
-    bottle.scene.rotation.x += 0.01;
-    bottle.scene.rotation.y += 0.05;
+    bottle.scene.rotation.x += 0.001;
+    bottle.scene.rotation.y += 0.005;
     bottle.scene.rotation.z += 0.01;
   }
 
   if (lotion) {
     // lotion.scene.rotation.x += 0.01;
-    lotion.scene.rotation.y += 0.05;
+    lotion.scene.rotation.y += 0.025;
     // lotion.scene.rotation.z += 0.01;
   }
 
   if (card) {
     // card.scene.rotation.x += 0.01;
-    card.scene.rotation.y += 0.05;
+    card.scene.rotation.y += 0.03;
     // card.scene.rotation.z += 0.01;
   }
 
   if (trashBag1) {
     // trashBag1.scene.rotation.x += 0.01;
-    trashBag1.scene.rotation.y += 0.05;
+    trashBag1.scene.rotation.y += 0.035;
     // trashBag1.scene.rotation.z += 0.01;
   }
 
@@ -212,14 +245,14 @@ function animate () {
 
   
   if (fork) {
-    fork.scene.rotation.x += 0.01;
-    fork.scene.rotation.y += 0.005;
-    fork.scene.rotation.z += 0.01;
+    fork.scene.rotation.x -= 0.01;
+    fork.scene.rotation.y -= 0.005;
+    fork.scene.rotation.z -= 0.01;
   }
 
   if (box) {
     box.scene.rotation.x += 0.01;
-    box.scene.rotation.y += 0.05;
+    box.scene.rotation.y -= 0.005;
     box.scene.rotation.z += 0.01;
   }
   
