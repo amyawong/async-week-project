@@ -8,6 +8,8 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 
 const scene = new THREE.Scene(); // scene is like a container that holds all objects, cameras, and lights
 
+// const camera = new THREE.OrthographicCamera( window.innerWidth / - 2, window.innerWidth / 2, window.innerHeight / 2, window.innerHeight / - 2, 1, 1000 );
+// scene.add( camera );
 const camera = new THREE.PerspectiveCamera( 130, window.innerWidth / window.innerHeight, 1, 5000 );
 // in order to look at things inside the scene, we need a camera (there are many diff types of cameras in three.js)
 // PerspectiveCamera mimics what human eyes see
@@ -23,9 +25,9 @@ const renderer = new THREE.WebGLRenderer({
 renderer.setPixelRatio( window.devicePixelRatio );
 renderer.setSize( window.innerWidth, window.innerHeight ) // to make it a full screen canvas
 
+camera.position.setX(0);
+camera.position.setY(20);
 camera.position.setZ(30); // move camera along z-axis
-camera.position.setY(30);
-// camera.position.setX(30);
 
 renderer.render( scene, camera ); // .render == draw
 
@@ -55,7 +57,7 @@ scene.add( mesh );
 
 // light source
 const pointLight = new THREE.PointLight(0xffffff); // pointLight emits light in all directions, pass in a hexidecimal literal
-pointLight.position.set(25, 25, 25); // position it away from the center 
+pointLight.position.set(0, 25, 25); // position it away from the center 
 scene.add(pointLight) // add to scene
 
 const lightHelper = new THREE.PointLightHelper(pointLight); // shows position of pointLight
@@ -161,6 +163,17 @@ dvdLoader.load('./models/dvd/scene.gltf', (gltfScene) => {
 // ------------------------------------------------------------------------------------------------------------------------------------------------------
 
 // scroll animation
+// function moveCamera() {
+  // const t = document.body.getBoundingClientRect().top;
+  // console.log('t: \n', t);
+  // camera.position.z = t * -1;
+  // camera.position.x = t * -0.2;
+  // camera.position.y = t * -5;
+  // console.log('camera.position.x: ', camera.position.x);
+  // console.log('camera.position.y: ', camera.position.y);
+  // console.log('camera.position.z: ', camera.position.z, '\n');
+// }
+// document.body.onscroll = moveCamera;
 
 
 // ------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -200,7 +213,7 @@ function animate () {
   
   if (fork) {
     fork.scene.rotation.x += 0.01;
-    fork.scene.rotation.y += 0.05;
+    fork.scene.rotation.y += 0.005;
     fork.scene.rotation.z += 0.01;
   }
 
@@ -218,6 +231,7 @@ function animate () {
   
   controls.update(); // to make sure changes from dom mouse events are reflected in the UI
   
+  // controls.enableZoom = true;
   requestAnimationFrame( animate ); // tells browser you want to perform an animation; recursively call function to make an infinite loop
   renderer.render( scene, camera );
 }
